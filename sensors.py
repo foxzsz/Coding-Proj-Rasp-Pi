@@ -1,11 +1,11 @@
-import Adafruit_DHT, time
+import Adafruit_DHT, time, board
 
 count = 0
 humidityMinute =  []
 temperatureMinute = []
 
 def MinuteAverageCalculator():
-    DHT_SENSOR = Adafruit_DHT.DHT22
+    DHT_SENSOR = Adafruit_DHT.DHT22(board.D4)
     #DHT_PIN = 4
     global count, humidityAverage, temperatureAverage
     while count<=20:
