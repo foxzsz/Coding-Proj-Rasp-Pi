@@ -21,10 +21,10 @@ def chart_data():
             yield f"data:{json_data}\n\n"
             """
             json_data_humidity = json.dumps(
-                {'time': datetime.now().strftime('%H:%M:%S'), 'value': humidityminute[ls_counter]})
+                {'time': datetime.now().strftime('%H:%M:%S'), 'value': humidityMinute[ls_counter]})
             yield f"data:{json_data}\n\n"
             json_data_temperature = json.dumps(
-                {'time': datetime.now().strftime('%H:%M:%S'), 'value': temperatureminute[ls_counter]})
+                {'time': datetime.now().strftime('%H:%M:%S'), 'value': temperatureMinute[ls_counter]})
             yield f"data:{json_data}\n\n"
             """
             ls_counter += 1
