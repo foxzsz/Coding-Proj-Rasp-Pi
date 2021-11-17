@@ -28,5 +28,5 @@ def chart_data():
 
     return Response(update_chart_data(), mimetype='text/event-stream')
 
-#threading.Thread(target=MinuteAverageCalculator).start()
+#threading.Thread(target=data).start()
 application.run(debug=True, threaded=True)
