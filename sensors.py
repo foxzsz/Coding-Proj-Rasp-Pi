@@ -1,20 +1,22 @@
 import Adafruit_DHT, time, board
 
-count = 0
-humidityMinute = []
-temperatureMinute = []
+import Adafruit_DHT
 
 
-def MinuteAverageCalculator():
-    DHT_SENSOR = Adafruit_DHT.DHT22(board.D4)
-    # DHT_PIN = 4
-    global count, humidityAverage, temperatureAverage, humidityMinute, temperatureMinute
-    while count <= 20:
-        # humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
-        humidity, temperature = DHT_SENSOR.humidity, DHT_SENSOR.temperature
-        humidityMinute.append(humidity)
-        temperatureMinute.append(temperature)
-        count += 1
-        time.sleep(1)
-        humidityAverage = sum(humidityMinute) / len(humidityMinute)
-        temperatureAverage = sum(temperatureMinute) / len(temperatureMinute)
+ 
+humidity = 0
+temperature = 0
+
+def HumidityThread():
+    global humidity, temperature
+    DHT_SENSOR = Adafruit_DHT.DHT22
+    DHT_PIN = 4
+    while True:
+        humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+        if humidity is not None and temperature is not None:
+            print("Temp={0:0.1f}*C  Humidity={1:0.1f}%".format(temperature, humidity))
+        else:
+            print("Failed to retrieve data from humidity sensor") 
+        time.sleep(1) 
+
+

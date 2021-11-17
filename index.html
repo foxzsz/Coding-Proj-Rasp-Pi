@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Creating Real-Time Charts with Flask</title>
+    <title>Testing</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" rel="stylesheet">
 </head>
@@ -31,9 +31,15 @@
             data: {
                 labels: [],
                 datasets: [{
-                    label: "Humidity Sensor",
+                    label: "Temperature",
                     backgroundColor: 'rgb(255, 99, 132)',
                     borderColor: 'rgb(255, 99, 132)',
+                    data: [],
+                    fill: false,
+                },{
+                    label: "Humidity",
+                    backgroundColor: 'rgb(0,0,255)',
+                    borderColor: 'rgb(0,0,255)',
                     data: [],
                     fill: false,
                 }],
@@ -42,7 +48,7 @@
                 responsive: true,
                 title: {
                     display: true,
-                    text: 'Creating Real-Time Charts with Flask'
+                    text: 'Humidity graphed over time'
                 },
                 tooltips: {
                     mode: 'index',
@@ -55,6 +61,10 @@
                 scales: {
                     xAxes: [{
                         display: true,
+                        ticks: {
+                            autoSkip: true,
+                            amaxTicksLimit: 3
+                            },
                         scaleLabel: {
                             display: true,
                             labelString: 'Time'
@@ -84,7 +94,8 @@
                 config.data.datasets[0].data.shift();
             }
             config.data.labels.push(data.time);
-            config.data.datasets[0].data.push(data.value);
+            config.data.datasets[0].data.push(data.humidity);
+            config.data.datasets[1].data.push(data.temperature);
             lineChart.update();
         }
     });
