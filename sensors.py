@@ -1,22 +1,14 @@
-import Adafruit_DHT, time, board
+import Adafruit_DHT, time
 
-import Adafruit_DHT
+humidity_data = []
+temperature_data = []
 
-
- 
-humidity = 0
-temperature = 0
-
-def HumidityThread():
-    global humidity, temperature
-    DHT_SENSOR = Adafruit_DHT.DHT22
-    DHT_PIN = 4
+def data():
+    global humidity_data, temperature_data, humidityAverage, temperatureAverage
     while True:
-        humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
-        if humidity is not None and temperature is not None:
-            print("Temp={0:0.1f}*C  Humidity={1:0.1f}%".format(temperature, humidity))
-        else:
-            print("Failed to retrieve data from humidity sensor") 
+        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
+        humidity_data.append(round(humidity, 2))
+        temperature_data.append(round(temperature, 2))
+        humidityAverage = sum(humidity_data) / len(humidity_data)
+        temperatureAverage = sum(temperature_data) / len(temperature_data)
         time.sleep(1) 
-
-
