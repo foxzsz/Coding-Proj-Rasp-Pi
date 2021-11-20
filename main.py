@@ -1,10 +1,11 @@
-import json, time, random, threading
+import json, time, threading
+#import random
 from datetime import datetime
 from sensors import *
 from flask import Flask, Response, render_template
 
 application = Flask(__name__)
-random.seed()
+#random.seed()
 
 @application.route('/')
 def index():
