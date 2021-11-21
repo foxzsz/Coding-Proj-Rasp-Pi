@@ -1,4 +1,4 @@
-import adafruit_dht, time
+import adafruit_dht
 from board import *
 
 humidity_data = []
@@ -14,4 +14,3 @@ def data():
         temperature_data.append(temperature)
         humidityAverage = sum(humidity_data) / len(humidity_data)
         temperatureAverage = sum(temperature_data) / len(temperature_data)
-        time.sleep(1)
