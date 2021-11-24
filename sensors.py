@@ -13,21 +13,19 @@ def data():
     while True:
         try:
             humidity  = dht22.humidity
-            temperature = dht22.temperature
+            temperature = dht22.temperaturefg
             index = it.count()
             if temperature == None:
                 print("Unable to get temperature")
-                temperature_data.append(temperature_data[-1])
             else:
                 temperature_data.append(temperature)
                 temperatureAverage = sum(temperature_data) / len (temperature_data)
             if humidity == None:
                 print("Unable to get humidity")
-                humidity_data.append(humidity_data[-1])
             else:
                 humidity_data.append(humidity)
                 humidityAverage = sum(humidity_data) / len (humidity_data)
-            time_values.append(next(index))      
+            time_values.append(next(index))
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
