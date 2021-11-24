@@ -1,12 +1,5 @@
 from .displays import *
 import templates.tk as tk
 
-## Total lines of code: 248
-
-
-## This will start a thread / subproccess which will update the data every second, this is required for thw website and the graph
-threading.Thread(target=data).start()
-
-
-## Create a new Tkinter window and use the functions as the paramaters
+## Run the class window from tk file and pass the commands mat(which is used for graphing on matplotlib) and web(which is used to graph on a webpage) to the buttons of the window
 window = tk.win(mat, web)
