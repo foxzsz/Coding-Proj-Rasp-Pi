@@ -4,6 +4,7 @@ from .sensors import *
 
 ## Matplotlib graph function
 def mat():
+    threading.Thread(target=data).start()
     def animate(i):
 
         ## Function for updating the data on the graph
