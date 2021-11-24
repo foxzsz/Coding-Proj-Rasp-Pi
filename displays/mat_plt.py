@@ -1,6 +1,6 @@
 import threading, matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from .sensors import *
+from sensors import *
 
 ## Matplotlib graph function
 def mat():
