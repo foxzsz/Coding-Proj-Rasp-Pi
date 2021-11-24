@@ -43,5 +43,7 @@ def web():
         ## Send an event to the browser
         return Response(update_chart_data(), mimetype='text/event-stream')
     
+    threading.Thread(target=data).start()
+    
     ## Run the application, if run on the ip address 0.0.0.0 other people can access the website in their browser
     application.run(host="0.0.0.0")
