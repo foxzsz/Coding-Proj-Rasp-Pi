@@ -29,5 +29,4 @@ def web():
 
         return Response(update_chart_data(), mimetype='text/event-stream')
 
-    threading.Thread(target=data).start()
     application.run(host="0.0.0.0")
