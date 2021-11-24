@@ -1,3 +1,6 @@
-import mat_plt, web_graph, templates.tk as tk
+from displays import *
+import templates.tk as tk
 
-window = tk.win(mat_plt.mat, web_graph.web)
+threading.Thread(target=data).start()
+
+window = tk.win(mat, web)
