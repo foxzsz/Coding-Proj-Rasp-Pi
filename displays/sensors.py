@@ -20,7 +20,7 @@ def data():
         try:
             ## Get the values
             humidity  = dht22.humidity
-            temperature = dht22.temperaturefg
+            temperature = dht22.temperature
             index = it.count()
             ## The dht22 also commonly returns "None" as the temperature or humidity value. To not cause any error we have to make an if statement, an error would happen when there is no data in the list and it tries to calculate the average
             if temperature == None:
