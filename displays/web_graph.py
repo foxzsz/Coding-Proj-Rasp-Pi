@@ -1,7 +1,7 @@
 import json, time, threading
 from datetime import datetime
 from flask import Flask, Response, render_template
-from .sensors import *
+from sensors import *
 
 
 ## Function which initiates the flask app
