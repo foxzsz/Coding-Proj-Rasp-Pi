@@ -5,14 +5,10 @@ from sensors import *
 
 # Matplotlib graph function
 def mat():
-    # Threading is used to run many functions and loops at a time. This data function is used from sensors.py
-    threading.Thread(target=data).start()
-    time_values = []
-    index = it.count()
+    
 
     def animate(i):
         # Plotting a line graph using the values from sensors.py
-        time_values.append(next(index))
         plt.plot(time_values, humidity_data, '-b', label='humidity')
         plt.plot(time_values, temperature_data, '-r',  label='temperature')
         # Creating a scatter plot so people can know the data values

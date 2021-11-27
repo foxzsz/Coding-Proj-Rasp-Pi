@@ -1,5 +1,5 @@
 # Importing the needed modules
-import json, threading
+import json, threading, webbrowser
 from datetime import datetime
 from flask import Flask, Response, render_template
 from sensors import *
@@ -15,34 +15,31 @@ def web():
     @application.route('/')
     def index():
         return render_template('index.html')
+        
 
     # This is used to update the data on the users browser, using Server-sent events the webserver will send the new data to the user  to update their graph
     @application.route('/chart-data')
     def chart_data():
         def update_chart_data():
             while True:
-                ## Create the equation using the averages
+                # Create the equation using the averages
                 humidityAverage = sum(humidity_data) / len(humidity_data)
                 temperatureAverage = sum(temperature_data) / len(temperature_data)
                 equation = "Equation: Humidity = Temperature × " + str(humidityAverage / temperatureAverage)
-                ## Used for testing
-                """
-                json_data = json.dumps(
-                    {'time': datetime.now().strftime('%H:%M:%S'), 'humidity': random.randint(1, 50), 'temperature': random.randint(1, 50)})
-                yield f"data:{json_data}\n\n"
-                """
-                ## Create json data with the humidity and temperature data(JavaScript Object Notation) so the browser can use it.
+
+                # Create json data with the humidity and temperature data(JavaScript Object Notation) so the browser can use it.
                 json_data = json.dumps(
                     {'time': datetime.now().strftime('%H:%M:%S'), 'humidity': humidity_data[-1], 'temperature': temperature_data[-1], 'equation': equation})
-                ## Yield the data Definition: "The yield statement suspends function's execution and sends a value back to the caller, but retains enough state to enable function to resume where it is left" (https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do)
+                # Yield the data Definition: "The yield statement suspends function's execution and sends a value back to the caller, but retains enough state to enable function to resume where it is left" (https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do)
                 yield f"data:{json_data}\n\n"
                 # pause for 1 second
                 time.sleep(1)
         # Send an event to the browser
         return Response(update_chart_data(), mimetype='text/event-stream')
     
-    # Threading is used to run many functions and loops at a time. This data function is used from sensors.py
     threading.Thread(target=data).start()
-    
+
+    #webbrowser.open_new('http://192.168.0.43:5000/')
     # Run the application, if run on the ip address 0.0.0.0 other people can access the website in their browser
     application.run(host="0.0.0.0")
+    
