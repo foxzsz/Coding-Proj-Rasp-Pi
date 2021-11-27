@@ -1,10 +1,13 @@
-import adafruit_dht, time, sys, os
+import time, sys, os, itertools as it
 from board import *
-import random
+import adafruit_dht
+#import random
 
 # Define Values
 humidity_data = []
 temperature_data = []
+time_values = []
+index = it.count()
 
 # Create dht22 object
 dht22 = adafruit_dht.DHT22(D4, use_pulseio=False)
@@ -14,8 +17,10 @@ def data():
     global humidity_data, temperature_data, dht22, time_values
     while True:
         # A try and except is needed for this function, this is because the DHT 22 returns a lot of errors and error handling is neccesary here to keep it running
+        
         try:
-            ## Get the values
+            #"""
+            # Get the values
             humidity  = dht22.humidity
             temperature = dht22.temperature
 
@@ -28,10 +33,11 @@ def data():
                 print("Unable to get humidity")
             else:
                 humidity_data.append(humidity)
-            
-            ## Testing with random data to check if the other files actually read the variables
+            #"""
+            # Testing with random data to check if the other files actually read the variables
             #temperature_data.append(random.randint(1, 50))
             #humidity_data.append(random.randint(1, 50))
+            time_values.append(next(index))
         except Exception as e:
             # This is not really neccesary however using this it allows us to see exactly which line is causing the error
             exc_type, exc_obj, exc_tb = sys.exc_info()
