@@ -1,11 +1,15 @@
 # Importing the needed modules
 import threading, matplotlib.pyplot as plt, itertools as it
 from matplotlib.animation import FuncAnimation
+from displays.sensors import data
 from sensors import *
 
 # Matplotlib graph function
 def mat():
-    
+
+    # Threading is used to run many functions and loops at a time. This data function is used from sensors.py
+    threading.Thread(target=data).start()
+    #threading.Thread(target=fakedata).start()
 
     def animate(i):
         # Plotting a line graph using the values from sensors.py

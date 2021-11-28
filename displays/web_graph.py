@@ -1,7 +1,8 @@
 # Importing the needed modules
-import json, threading, webbrowser
+import json, threading, webbrowser, socket
 from datetime import datetime
 from flask import Flask, Response, render_template
+from displays.sensors import data
 from sensors import *
 
 # Function which initiates the flask app
@@ -37,9 +38,14 @@ def web():
         # Send an event to the browser
         return Response(update_chart_data(), mimetype='text/event-stream')
     
-    #threading.Thread(target=data).start()
+    # Use the ip address to open the webpage
+    ip = "http://" + socket.gethostbyname(socket.gethostname()) + ":5000/"
+    webbrowser.open(ip)
 
-    #webbrowser.open_new('http://192.168.0.43:5000/')
+    # Threading is used to run many functions and loops at a time. This data function is used from sensors.py
+    threading.Thread(target=data).start()
+    #threading.Thread(target=fakedata).start()
+
+
     # Run the application, if run on the ip address 0.0.0.0 other people can access the website in their browser
     application.run(host="0.0.0.0")
-    
