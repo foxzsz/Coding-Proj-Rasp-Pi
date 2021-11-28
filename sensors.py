@@ -13,13 +13,13 @@ index = it.count()
 dht22 = adafruit_dht.DHT22(D4, use_pulseio=False)
 
 # Main function for getting the data
+#"""
 def data():
     global humidity_data, temperature_data, dht22, time_values,index
     while True:
         # A try and except is needed for this function, this is because the DHT 22 returns a lot of errors and error handling is neccesary here to keep it running
         
         try:
-            #"""
             # Get the values
             humidity  = dht22.humidity
             temperature = dht22.temperature
@@ -42,14 +42,14 @@ def data():
             print(f"Ignored error: {e}")
             continue
         time.sleep(1)
-
+#"""
 
 # This function is used to test if all the files are working so we can also test it without the DHT 22 Sensor
 def fakedata():
     global humidity_data, temperature_data, dht22, time_values,index
     while True:
-        humidity = random.randint(10,100)
-        temperature = random.randint(10,100)
+        humidity = random.randint(1, 50)
+        temperature = random.randint(1, 50)
         temperature_data.append(temperature)
         humidity_data.append(humidity)
         time_values.append(next(index))
