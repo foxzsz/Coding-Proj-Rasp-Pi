@@ -39,7 +39,7 @@ def web():
                 # Yield the data Definition: "The yield statement suspends function's execution and sends a value back to the caller, but retains enough state to enable function to resume where it is left" (https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do)
                 yield f"data:{json_data}\n\n"
                 # pause for 1 second
-                time.sleep(1)
+                time.sleep(60)
         # Send an event to the browser
         return Response(update_chart_data(), mimetype='text/event-stream')
     
