@@ -41,7 +41,7 @@ def data():
             print(exc_type, f_name, exc_tb.tb_lineno)
             print(f"Ignored error: {e}")
             continue
-        time.sleep(600)
+        time.sleep(60)
 #"""
 
 # This function is used to test if all the files are working so we can also test it without the DHT 22 Sensor
