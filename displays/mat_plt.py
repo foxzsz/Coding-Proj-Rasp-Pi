@@ -19,8 +19,8 @@ def mat():
         plt.scatter(time_values, temperature_data, c= 'red')
         # The legend location in the window is upper left
         plt.gca().legend(('Humidity', 'Temperature'), loc="upper left")
-    # Animate the graph using funcanimation and set the interval as 1000ms(milliseconds)
-    live = FuncAnimation(plt.gcf(), animate, interval=1000)
+    # Animate the graph using funcanimation and set the interval as 60000ms(milliseconds)
+    live = FuncAnimation(plt.gcf(), animate, interval=60000)
 
     plt.xlabel("time(seconds)")
     plt.ylabel("humidity(%), temperatre(°C)")
