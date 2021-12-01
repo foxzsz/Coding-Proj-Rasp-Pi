@@ -1,8 +1,7 @@
 # Importing the needed modules
 import threading, matplotlib.pyplot as plt, itertools as it
 from matplotlib.animation import FuncAnimation
-from displays.sensors import data
-from sensors import *
+from .sensors import *
 
 # Matplotlib graph function
 def mat():
