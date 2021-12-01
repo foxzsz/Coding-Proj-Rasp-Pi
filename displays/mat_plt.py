@@ -23,6 +23,6 @@ def mat():
     live = FuncAnimation(plt.gcf(), animate, interval=60000)
 
     plt.xlabel("time(seconds)")
-    plt.ylabel("humidity(%), temperatre(°C)")
+    plt.ylabel("humidity(%), temperature(°C)")
     # Display the window
     plt.show()
